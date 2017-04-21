@@ -1,15 +1,31 @@
 import React from 'react';
-import store from '../../store/store';
+import {connect} from 'react-redux';
+import {addToCart} from '../../actions';
 
 class AddToCard extends React.Component {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(e) {
+    e.preventDefault()
+    this.props.dispatch(
+      addToCart(
+        this.props.cart.productList,
+        this.props.id
+      )
+    )
+  }
+
   render() {
     return (
       <div>
         <h2>{this.props.name}</h2>
-        <button onClick={() => store.dispatch({type: 'ADD_TO_CART' , index:this.props.id}) }> Addto cart : {this.props.quantity}</button>
+        <button onClick={this.handleClick}> Addto cart : {this.props.quantity}</button>
       </div>
     );
   }
 }
 
-export default AddToCard;
+export default connect(store => ({cart: store.cart}))(AddToCard);
