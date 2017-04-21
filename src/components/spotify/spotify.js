@@ -1,19 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchArtists} from '../../actions';
+import {fetchAlbums} from '../../actions';
 
 
 class Spotify extends React.Component {
-  constructor() {
-    super();
-
-    this.state = {
-      albums: [],
-    }
-  }
-
   componentWillMount() {
-    this.props.dispatch(fetchArtists())
+    this.props.dispatch(fetchAlbums())
   }
 
   componentDidlMount() {
@@ -24,15 +16,15 @@ class Spotify extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         {
           this.props.spotify.albums.map(
             (album, index) =>
-              <h2 key={index}>
-                {album.name}
-              </h2>
+              <div key={index}>
+                <h2>{album.name}</h2>
+                <h3>{album.data.release_date}</h3>
+              </div>
           )
         }
       </div>

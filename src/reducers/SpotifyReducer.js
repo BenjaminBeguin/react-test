@@ -13,7 +13,6 @@ export default function musicReducer(state = MusicUnitialState, action){
         albums: action.payload.albums
       }
     }
-
 		default: {
       return state;
     }
