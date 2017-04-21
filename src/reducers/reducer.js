@@ -14,7 +14,7 @@ const ProductUnitialState = [{
 
 function productsReducer(state = ProductUnitialState, action){
   switch(action.type) {
-		case types.ADD_TO_CARST:
+		case types.ADD_TO_CART:
       state[action.index].quantity += 1
 		  return state
 		default:
